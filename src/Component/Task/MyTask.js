@@ -6,7 +6,7 @@ const MyTask = () => {
     const [show,setShow]=useState([])
     useEffect(()=>{
 
-        fetch(`http://localhost:5000/mytask`)
+        fetch(`https://server-riad009.vercel.app/mytask`)
         .then(res=>res.json())
         .then(data=> setShow(data))
     
