@@ -15,7 +15,7 @@ const Order = () => {
         .then((data) => setOrder(data));
     }, [order]);
 
-
+ console.log('check')
     //order status change
     const handleStatus = (u) => {
           
