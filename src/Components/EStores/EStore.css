@@ -1,0 +1,12 @@
+@media (max-width: 767px) {
+    .smdevice-device-hidden {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .lgdevice-device-hidden {
+      display: none;
+    }
+  }
+  
