@@ -6,32 +6,33 @@ import { url } from '../Shared/Shared';
 import { ToastContainer, toast } from 'react-toastify';
 
 const IdTour = () => {
-  const tourData = useLoaderData();
-  const {creatUser}= useContext(AuthContext)
-
+    const {user}=useContext(AuthContext)
+ 
+    const tourData = useLoaderData();
   
-  //post for booking
+  
+  // post for booking
   const handleBookNow = async (event) => {
     event.preventDefault();
 
     const data = {
-        tourData,
-        email: creatUser.email,
+      tourData,
+      email: user.email
+     
     };
-   
+
     try {
       const response = await axios.post(`${url}/post/tour/booking`, data);
-     
-     
-     toast.success('booking Success')
+      toast.success('Booking Success');
     } catch (error) {
       console.error(error);
     }
   };
+
   return (
     <div className="flex flex-col lg:flex-row text-left m-2   ">
       <div className="lg:w-1/2 ">
-        <img src={tourData.imageUrl} alt="Tour Image" className="w-full" />
+        <img src={tourData.imageUrl} alt="Tour Image" className="w-full h-full" />
       </div>
       <div className="lg:w-1/2 p-4 border-dotted border-y-2 border-r-2 bg-gray-200 border-green-200 ">
         <h2 className="text-2xl font-bold mb-4">{tourData.placeName}</h2>

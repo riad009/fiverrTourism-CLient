@@ -27,6 +27,8 @@ import IDorder from './Components/Dashboard/Admin/Order/IDorder';
 import MyProduct from './Components/Dashboard/Admin/Order/MyProduct';
 import PostPlanTour from './Components/PlanTour/PostPlanTour';
 import IdTour from './Components/PlanTour/IdTour';
+import Booking from './Components/Dashboard/Booking/Booking';
+
 
 
 
@@ -175,6 +177,13 @@ function App() {
                 path: '/dashboard/postplantour',
                 element: <PostPlanTour></PostPlanTour>
               },
+            
+              {
+                path: '/dashboard/mybooking',
+                element: <Booking></Booking>
+              },
+            
+             
             
             
             ]
