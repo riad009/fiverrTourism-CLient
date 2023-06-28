@@ -25,6 +25,8 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Order from './Components/Dashboard/Admin/Order/Order';
 import IDorder from './Components/Dashboard/Admin/Order/IDorder';
 import MyProduct from './Components/Dashboard/Admin/Order/MyProduct';
+import PostPlanTour from './Components/PlanTour/PostPlanTour';
+import IdTour from './Components/PlanTour/IdTour';
 
 
 
@@ -112,6 +114,11 @@ function App() {
             element: <IdWiseProduct></IdWiseProduct>,
             loader:({params})=>fetch(`${url}/estoreid/${params.id}`)
           },
+          {
+            path: '/get/tour/id/:id',
+            element: <IdTour></IdTour>,
+            loader:({params})=>fetch(`${url}/get/tour/id/${params.id}`)
+          },
          
          
           // {
@@ -162,6 +169,11 @@ function App() {
               {
                 path: '/dashboard/myproduct',
                 element:<MyProduct></MyProduct>
+              },
+            
+              {
+                path: '/dashboard/postplantour',
+                element: <PostPlanTour></PostPlanTour>
               },
             
             

@@ -28,6 +28,7 @@ const LayoutDashboard = () => {
     <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link>
     <Link to={'/dashboard/userlist'}><li><a>User List</a></li></Link>
     <Link to={'/dashboard/postestore'}><li><a>Post Estore</a></li></Link>
+    <Link to={'/dashboard/postplantour'}><li><a>Post PlanTour</a></li></Link>
     <Link to={'/dashboard/cart'}><li><a>Cart</a></li></Link>
     <Link to={'/dashboard/Myorder'}><li><a>My Order</a></li></Link>
     <Link to={'/dashboard/myproduct'}><li><a>My Estore product</a></li></Link>
