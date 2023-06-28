@@ -28,6 +28,8 @@ import MyProduct from './Components/Dashboard/Admin/Order/MyProduct';
 import PostPlanTour from './Components/PlanTour/PostPlanTour';
 import IdTour from './Components/PlanTour/IdTour';
 import Booking from './Components/Dashboard/Booking/Booking';
+import ListBooking from './Components/Dashboard/Booking/ListBooking';
+import IdListBooking from './Components/Dashboard/Booking/IdListBooking';
 
 
 
@@ -181,6 +183,15 @@ function App() {
               {
                 path: '/dashboard/mybooking',
                 element: <Booking></Booking>
+              },
+              {
+                path: '/dashboard/listbooking',
+                element: <ListBooking></ListBooking>
+              },
+              {
+                path: '/dashboard/get/bookingList/id/:id',
+                element: <IdListBooking></IdListBooking>,
+                loader:({params})=>fetch(`${url}/get/bookingList/id/${params.id}`)
               },
             
              

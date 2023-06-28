@@ -4,19 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../../Auth/AuthProvider';
 import axios from 'axios';
 import { AiFillDelete } from 'react-icons/ai';
+import { useLoaderData } from 'react-router-dom';
 
-const Booking = () => {
+const IdListBooking = () => {
   const { user } = useContext(AuthContext);
-  const [booking, setBooking] = useState([]);
 
-  useEffect(() => {
-   
-       fetch(`${url}/get/findMyBooking/byEmail?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setBooking(data))
-        .catch((error) => console.log(error));
-   
-  }, [booking]);
+
+  const booking= useLoaderData()
   
   //handle delete
   const handleDelete = async (p) => {
@@ -31,44 +25,45 @@ const Booking = () => {
       console.error('Error deleting product:', error);
     }
   };
+
+  
   return (
     <div>
-    
-      {booking.map((bookingData) => (
-        <div key={bookingData._id} className='m-4'>
+     <h2>jello</h2>
+     
+        <div key={booking.tourData._id} className='m-4'>
           <div className='flex flex-col lg:flex-row text-left m-2'>
             <div className='lg:w-1/2'>
-              <img  src={bookingData.tourData.imageUrl} alt='Tour Image' className='w-full h-full' />
+              <img  src={booking.tourData.imageUrl} alt='Tour Image' className='w-full h-full' />
             </div>
             <div className='lg:w-1/2 p-4 border-dotted border-y-2 border-r-2 bg-gray-200 border-green-200'>
-              <h2 className='text-2xl font-bold mb-4'>{bookingData.tourData.placeName}</h2>
+              <h2 className='text-2xl font-bold mb-4'>{booking.tourData.placeName}</h2>
               <p className='mb-2'>
-                <strong>Availability:</strong> {bookingData.tourData.availability}
-              </p>
-              <p className='mb-2'>
-                <strong>Duration:</strong> {bookingData.tourData.duration}
-              </p>
-              <p className='mb-4'>
-                <strong>Description:</strong> {bookingData.tourData.description}
+                <strong>Availability:</strong> {booking.tourData.availability}
               </p>
               <p className='mb-2'>
-                <strong>Date and Time:</strong> {bookingData.tourData.dateAndTiming}
+                <strong>Duration:</strong> {booking.tourData.duration}
               </p>
               <p className='mb-4'>
-                <strong>Price:</strong> {bookingData.tourData.price}
+                <strong>Description:</strong> {booking.tourData.description}
+              </p>
+              <p className='mb-2'>
+                <strong>Date and Time:</strong> {booking.tourData.dateAndTiming}
               </p>
               <p className='mb-4'>
-                <strong>Clearance:</strong> {bookingData.clearance}
+                <strong>Price:</strong> {booking.tourData.price}
               </p>
-              
-              <button  className='btn hover:bg-red-600 btn-xs text-white' onClick={() => handleDelete(bookingData)}>Delete this booking<AiFillDelete/> </button>
+              <p className='mb-4'>
+                <strong>Clearance:</strong> {booking.clearance}
+              </p>
+              <button  className='btn btn-warning btn-xs text-white' onClick={() => handleDelete(booking)}>Delete this booking<AiFillDelete/> </button>
             </div>
           </div>
           <ToastContainer />
         </div>
-      ))}
+
     </div>
   );
 };
 
-export default Booking;
+export default IdListBooking;

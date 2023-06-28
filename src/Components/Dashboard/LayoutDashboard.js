@@ -33,6 +33,7 @@ const LayoutDashboard = () => {
     <Link to={'/dashboard/Myorder'}><li><a>My Order</a></li></Link>
     <Link to={'/dashboard/myproduct'}><li><a>My Estore product</a></li></Link>
     <Link to={'/dashboard/mybooking'}><li><a>My Booking</a></li></Link>
+    <Link to={'/dashboard/listbooking'}><li><a>All Booking list</a></li></Link>
     
     
       
