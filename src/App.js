@@ -30,6 +30,8 @@ import IdTour from './Components/PlanTour/IdTour';
 import Booking from './Components/Dashboard/Booking/Booking';
 import ListBooking from './Components/Dashboard/Booking/ListBooking';
 import IdListBooking from './Components/Dashboard/Booking/IdListBooking';
+import Shopkeepers from './Components/Dashboard/Shopkeepers/Shopkeepers';
+import Allorder from './Components/Dashboard/Admin/Order/AllOrder';
 
 
 
@@ -192,6 +194,18 @@ function App() {
                 path: '/dashboard/get/bookingList/id/:id',
                 element: <IdListBooking></IdListBooking>,
                 loader:({params})=>fetch(`${url}/get/bookingList/id/${params.id}`)
+              },
+              {
+                path: '/dashboard/shopkeepers',
+                element: <Shopkeepers></Shopkeepers>
+              },
+              {
+                path: '/dashboard/postdata',
+                element: <PostData></PostData>
+              },
+              {
+                path: '/dashboard/allorder',
+                element: <Allorder></Allorder>
               },
             
              

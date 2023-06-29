@@ -36,7 +36,7 @@ else {
           </label>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
            
-            <li> <Link to={'/'}>Home</Link></li>
+            {/* <li> <Link to={'/'}>Home</Link></li> */}
             <li><Link to={'/plantour'}>Plan A Tour</Link> </li>
             <li><Link to={'/visitplaces'}>Visit Places</Link></li>
             <li><Link to={'/estores'}>E-Store</Link> </li>
@@ -56,17 +56,19 @@ else {
           <Link className='mx-8' to={'/estores'}>E-Store</Link> 
           <Link className='mx-8' to={'/contact'}>Contact</Link> 
           <Link className='mx-8' to={'/about'}>About Us</Link> 
-          <Link className='mx-8' to={'/dashboard'}>Dashboard</Link>
+          
          
           {
 
 user?.email ?
 <> 
     
-
- <button onClick={handleLogout} className='btn btn-outline btn-success'>logout </button></>
+<Link className='mx-8' to={'/dashboard'}>Dashboard</Link>
+ {/* <button onClick={handleLogout} className='btn btn-outline btn-success'>logout </button> */}
+ </>
 :
 <>
+
 <Link to={'/login'} className='btn btn-outline btn-success'>Login </Link>
 </>
 

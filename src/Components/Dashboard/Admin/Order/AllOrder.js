@@ -3,7 +3,7 @@ import Cart from './Cart';
 import { url } from '../../../Shared/Shared';
 import { AuthContext } from '../../../Auth/AuthProvider';
 import { Link } from 'react-router-dom';
-const Order = () => {
+const Allorder = () => {
     const { user } = useContext(AuthContext);
     const [order, setOrder] = useState([]);
     
@@ -48,7 +48,15 @@ const Order = () => {
 
 
       //get all order details
-      
+      const [allorders, setAllOrder] = useState([]);
+
+      useEffect(() => {
+        fetch(`${url}/get/allOrder`)
+          .then(response => response.json())
+          .then(data => setAllOrder(data))
+          .catch(error => console.log(error));
+      }, [allorders]);
+     
 
     return (
         <div>
@@ -68,24 +76,14 @@ const Order = () => {
   <tbody>
     
       {
-        order?.map(p=> <tr>
+        allorders?.map(p=> <tr>
       <td class="w-2/8"> {p.email} </td>      
       <td class="w-2/8"> {p.time} </td>      
       <td class="w-2/8">{p.totalPrice}  </td>
       <td class="w-2/8">   <Link to={`/dashboard/get/idWise/order/${p._id}`} > <button className="btn btn-info btn-outline btn-sm ">Details</button></Link>
        </td>
       <td class="w-3/8"> {p.orderStatus} </td>
-      {
-        people.map(p=> <div>
-          {
-        p.accountType =="admin" ||  p.accountType =="shopkeeper"?
-        <><td><button onClick={() => handleStatus(p)} className=" btn-sm btn btn-outline btn-success">Make it complete</button></td>
-        </>
-        :
-        <></>
-      }
-        </div>)
-      }
+      <td><button onClick={() => handleStatus(p)} className=" btn-sm btn btn-outline btn-success">Make it complete</button></td>
         </tr>)
       }
 
@@ -100,4 +98,4 @@ const Order = () => {
     );
 };
 
-export default Order;
+export default Allorder;

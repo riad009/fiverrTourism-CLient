@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { TbTruckDelivery } from 'react-icons/tb'
 import { TbReplace } from 'react-icons/tb'
 import { SiAdguard } from 'react-icons/si'
@@ -22,9 +22,13 @@ const IdWiseProduct = () => {
  const stars = '★'.repeat(roundedRating);
 
  //add to card
+ const navigate=useNavigate()
  const handleAddToCard = async (event) => {
   event.preventDefault();
-
+  if (!user?.email) {
+    alert('Please Login')
+    navigate('/login')
+  }
   const data = {
    email: email,
    card: p,
@@ -91,11 +95,13 @@ const IdWiseProduct = () => {
    </h1>
 
 
-     <h1 className='my-3'>Shop Name: {p.shops} </h1>
+   <h1 className='my-3'>Shop Name: {p.shopName} </h1>
+
+
      
 
      <div className=''>
-      <button onClick={handleAddToCard} className='btn btn-success text-white'>Add to cardsss</button>
+      <button onClick={handleAddToCard} className='btn btn-success text-white'>Add to cart</button>
      </div>
     </div>
     <ToastContainer />

@@ -22,7 +22,7 @@ const varify=false
      },2)
     const email= event.target.email.value;
     const name= event.target.name.value;
-    const accountType="user";
+    const accountType="admin";
     const password= event.target.password.value;
     
     

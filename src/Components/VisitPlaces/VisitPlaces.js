@@ -103,7 +103,7 @@ const VisitPlaces = () => {
     />
     All
   </label>
-  <Link to={'/postdata'} >Post data</Link>
+  
 </div>
  
    {

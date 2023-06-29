@@ -1,11 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Auth/AuthProvider';
-
+import { url } from '../Shared/Shared';
 const YourComponent = () => {
   const {user}=useContext(AuthContext)
   const email = user?.email;
+ //get shopkeeper details
+ const [people, setPeople] = useState([]);
+ 
+  
 
+  useEffect(() => {
+    fetch(`${url}/get/findUser/byEmail?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setPeople(data));
+  }, []);
+  
+
+
+
+ //get shopkeeper details
   const [formData, setFormData] = useState({
     ownerEmail:email,
     name: '',
@@ -43,38 +57,18 @@ const YourComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/estore/post', formData)
+  
+    // const updatedFormData = { ...formData, people: people.people };
+  
+    axios.post(`${url}/estore/post`, formData)
       .then((response) => {
-    
-        // Reset the form if needed
-        // setFormData({
-        //   name: '',
-        //   Shops: '',
-        //   price: '',
-        //   description: '',
-        //   category: '',
-        //   featured: true,
-        //   stock: 5,
-        //   reviews: 58,
-        //   stars: 4.8,
-        //   image: [
-        //     {
-        //       url: ''
-        //     },
-        //     {
-        //       url: ''
-        //     },
-        //     {
-        //       url: ''
-        //     }
-        //   ]
-        // });
+        // Handle the response
       })
       .catch((error) => {
         console.error(error);
       });
   };
-
+  
 
  
 

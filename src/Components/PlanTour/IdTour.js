@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthProvider';
 import axios from 'axios';
 import { url } from '../Shared/Shared';
@@ -10,10 +10,20 @@ const IdTour = () => {
  
     const tourData = useLoaderData();
   
-  
+    const navigate=useNavigate()
   // post for booking
   const handleBookNow = async (event) => {
+
+    if (!user?.email) {
+        alert('Please Login')
+        navigate('/login')
+      }
+      
+     
     event.preventDefault();
+    // bypass
+    
+    // bypass
 
     const data = {
       tourData,
