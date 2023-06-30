@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-
+import { url } from '../../../Shared/Shared';
+import { AuthContext } from '../../../Auth/AuthProvider';
 const IDorder = () => {
+  const {user,loading}=useContext(AuthContext)
   const product = useLoaderData();
   console.log('product:', product);
+
+
+  //comemt post 
+  const [reviews, setComment] = useState('');
+  const [stars, setRating] = useState();
+ 
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleRatingChange = (event) => {
+    setRating(parseInt(event.target.value));
+  };
+
+  const handlePostComment = (productId) => {
+    // Create an object with the comment, rating, and productID values
+    const data = {
+      email: user.email,
+      reviews: reviews,
+      stars: stars,
+      productID: productId,
+    };
+    console.log('data',data)
+    // Perform the POST request
+    fetch(`${url}/post/comment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        // Handle the response
+        console.log('Comment posted successfully:', result);
+        // Reset the form values
+        setComment('');
+        
+      })
+      .catch((error) => {
+        console.error('Error posting comment:', error);
+      });
+  };
 
   return (
     <div className='bg-gray-100 min-h-screen text-left'>
@@ -21,10 +66,10 @@ const IDorder = () => {
           {product.order.map((order) => (
             <div key={order._id} className='mb-6'>
               <p className='text-gray-600 mb-2'>
-                <span className='font-bold'>Order ID:</span> {order._id}
+                <span className='font-bold'>Order ID:</span> {order.card._id}
               </p>
               <p className='text-gray-600 mb-4'>
-                <span className='font-bold'>Card Name:</span> {order.card.name}
+                <span className='font-bold'>Product Name:</span> {order.card.name}
               </p>
 
               <div className='flex flex-wrap -mx-2'>
@@ -38,6 +83,67 @@ const IDorder = () => {
                   </div>
                 ))}
               </div>
+              {/*  */}
+           {
+            product.orderStatus=="complete" ?
+            <>   <div>
+            {/* Your JSX code */}
+            <textarea
+              className="my-4 textarea textarea-accent"
+              placeholder="Write a comment"
+              onChange={handleCommentChange}
+            ></textarea>
+            <br />
+            <div className="rating">
+              <input
+                type="radio"
+                name="rating"
+                value="1"
+                className="mask mask-star-2 bg-green-500"
+                onChange={handleRatingChange}
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="2"
+                className="mask mask-star-2 bg-green-500"
+                onChange={handleRatingChange}
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="3"
+                className="mask mask-star-2 bg-green-500"
+                onChange={handleRatingChange}
+              />
+              <input
+                type="radio"
+                name="rating"
+                value="4"
+                className="mask mask-star-2 bg-green-500"
+                onChange={handleRatingChange}
+              />  
+              <input
+                type="radio"
+                name="rating"
+                value="5"
+                className="mask mask-star-2 bg-green-500"
+                onChange={handleRatingChange}
+              />
+            </div>
+            <br />
+            <button
+              className="my-2 text-white btn btn-success"
+              onClick={() => handlePostComment(order.card._id)}
+            >
+              Post Comment
+            </button>
+                    </div></>
+            :
+            <></>
+           }
+              {/*  */}
+
             </div>
           ))}
 
@@ -46,7 +152,9 @@ const IDorder = () => {
           </p>
           <p className='text-gray-600 mb-4'>
             <span className='font-bold'>Order Status:</span> {product.orderStatus}
-          </p>
+            <div>
+     
+    </div>   </p>
           <p className='text-gray-600 mb-4'>
             <span className='font-bold'>Time:</span> {product.time}
           </p>

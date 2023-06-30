@@ -41,7 +41,8 @@ else {
             <li><Link to={'/visitplaces'}>Visit Places</Link></li>
             <li><Link to={'/estores'}>E-Store</Link> </li>
             <li><Link to={'/estores'}>E-Store</Link> </li>
-            <Link to={'/dashboard'}>Dashboard</Link>
+            <li><Link to={'/dashboard'}>Dashboard</Link> </li>
+           
                </ul> 
         
         </div>
@@ -64,7 +65,7 @@ user?.email ?
 <> 
     
 <Link className='mx-8' to={'/dashboard'}>Dashboard</Link>
- {/* <button onClick={handleLogout} className='btn btn-outline btn-success'>logout </button> */}
+ <button onClick={handleLogout} className='btn btn-outline btn-success'>logout </button>
  </>
 :
 <>

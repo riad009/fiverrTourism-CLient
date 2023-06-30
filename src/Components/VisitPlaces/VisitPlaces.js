@@ -121,7 +121,7 @@ const VisitPlaces = () => {
 {
   catagories.map(show => <div>
 
-    <div className=" my-6 shadow-xl rounded-none card card-compact w-96 h-auto  bg-base-100 gap-2 ">
+    <div className=" my-6 shadow-xl rounded-none card card-compact w-96 bg-base-100 gap-2 ">
 
       {
         show.picture ?

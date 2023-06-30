@@ -1,10 +1,11 @@
 import React from 'react';
-
+import Lottie from "lottie-react"
+import find from '../../assets/lottie/dashboard2.json'
 const Dashboard = () => {
     return (
         <div>
-            <h2>Dashboard</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam necessitatibus fuga repellat magnam sequi tenetur dolor eum, deleniti aut quas! Itaque quo facilis magni necessitatibus vel. Corrupti earum soluta aperiam temporibus nam minus, fuga rem maxime amet iure facere provident ab iste voluptatibus sed, accusamus odio et harum, quia sunt.</p>
+         <div className=' w-2/3'><Lottie animationData={find}/></div>
+
         </div>
     );
 };

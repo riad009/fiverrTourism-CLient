@@ -32,6 +32,7 @@ import ListBooking from './Components/Dashboard/Booking/ListBooking';
 import IdListBooking from './Components/Dashboard/Booking/IdListBooking';
 import Shopkeepers from './Components/Dashboard/Shopkeepers/Shopkeepers';
 import Allorder from './Components/Dashboard/Admin/Order/AllOrder';
+import OrderHistory from './Components/Dashboard/Admin/Order/OrderHistory';
 
 
 
@@ -206,6 +207,11 @@ function App() {
               {
                 path: '/dashboard/allorder',
                 element: <Allorder></Allorder>
+              },
+            
+              {
+                path: '/dashboard/orderhistory',
+                element: <OrderHistory></OrderHistory>
               },
             
              

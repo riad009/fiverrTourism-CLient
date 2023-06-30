@@ -29,8 +29,8 @@ const YourComponent = () => {
     category: '',
     featured: true,
     stock: 5,
-    reviews: 58,
-    stars: 4.8,
+    
+   
     image: [
       {
         url: 'https://resource.logitech.com/w_1200,h_630,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/plp/ipad-keyboards/ipad-keyboard-twitter-image.png?v=1'
@@ -103,14 +103,8 @@ const YourComponent = () => {
           <label htmlFor="stock" className="block mb-2 text-gray-700">Stock</label>
           <input type="number" id="stock" name="stock" value={formData.stock} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
         </div>
-        <div className="mb-4">
-          <label htmlFor="reviews" className="block mb-2 text-gray-700">Reviews</label>
-          <input type="number" id="reviews" name="reviews" value={formData.reviews} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="stars" className="block mb-2 text-gray-700">Stars</label>
-          <input type="number" step="0.1" id="stars" name="stars" value={formData.stars} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
-        </div>
+      
+    
         <div className="mb-4">
           <label className="block mb-2 text-gray-700">Images</label>
           {formData.image.map((img, index) => (

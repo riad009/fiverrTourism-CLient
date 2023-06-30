@@ -71,7 +71,9 @@ else {
   <div className="drawer-side lg:shadow-xl ">
     <label htmlFor="dashboard-drawar" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 bg-base-100   text-xl font-semibold lg:border-2 ">
-         
+
+
+         {/* previous login data show  */}
     {people.map(p => (
   <div key={p.id}>
     {p.accountType === "admin" ? (
@@ -87,9 +89,11 @@ else {
     <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p> Cart</a></li></Link>
     <Link to={'/dashboard/Myorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>My Order</a></li></Link>
     <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>AllOrder</a></li></Link>
+    <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> Order History</a></li></Link>
     <Link to={'/dashboard/myproduct'}><li><a> <p className='text-orange-400'><BiStore/></p> My Estore product</a></li></Link>
     <Link to={'/dashboard/mybooking'}><li><a> <p className='text-blue-400'><TbBrandBooking/></p> My Booking</a></li></Link>
     <Link to={'/dashboard/listbooking'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> All Booking list</a></li></Link>
+
    
  
 
@@ -149,7 +153,7 @@ else {
 
     ) : p.accountType === "tplanner" ? (
       <p>
-      <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Admin</a></li>
+      <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Tourist Planner</a></li>
   {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
   {/* <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
   <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
@@ -233,14 +237,53 @@ user?.email ?
 </>
 
      }</li>
-  </div>
-))}
-
-    
-    
-      
      
+  </div>
+    ))}
 
+
+     <div>
+      {people.length === 0 ? <p>
+
+        <p>
+      <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Tourist</a></li>
+  {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
+  {/* <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link> */}
+  {/* <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
+  <Link to={'/dashboard/postplantour'}><li><a><p className='text-indigo-400'><FiSend/></p> Post PlanTour</a></li></Link>
+  <Link to={'/dashboard/shopkeepers'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Shopkeepers</a></li></Link>
+  <Link to={'/dashboard/postdata'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Places</a></li></Link> */}
+  <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p> Cart</a></li></Link>
+  <Link to={'/dashboard/Myorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>My Order</a></li></Link>
+  <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>Order History</a></li></Link>
+  {/* <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>AllOrder</a></li></Link> */}
+  {/* <Link to={'/dashboard/myproduct'}><li><a> <p className='text-orange-400'><BiStore/></p> My Estore product</a></li></Link> */}
+  <Link to={'/dashboard/mybooking'}><li><a> <p className='text-blue-400'><TbBrandBooking/></p> My Booking</a></li></Link>
+  {/* <Link to={'/dashboard/listbooking'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> All Booking list</a></li></Link> */}
+ 
+  <li className='my-8'>   {
+
+user?.email ?
+<> 
+    
+
+ <button onClick={handleLogout} className='btn btn-outline btn-warning'>logout </button></>
+:
+<>
+
+<Link to={'/login'} className='btn btn-outline btn-success'>Login </Link>
+</>
+
+     }</li>
+
+    </p>
+      </p> : (
+        <div>
+          
+        </div>
+      )}
+    </div>
+ 
     </ul>
   
   </div>
@@ -248,6 +291,7 @@ user?.email ?
 
 
         </div>
+        
         </div>
     );
 };

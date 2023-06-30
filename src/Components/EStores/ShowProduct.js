@@ -1,6 +1,7 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { url } from '../Shared/Shared';
 const ShowProduct = ({p}) => {
     
 
@@ -8,6 +9,8 @@ const ShowProduct = ({p}) => {
     //1.6 = 2 star rating
     const roundedRating = Math.round(p.stars);
     const stars = '★'.repeat(roundedRating);
+   
+
    
     return (
         <div>

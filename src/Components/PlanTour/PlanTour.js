@@ -5,7 +5,7 @@ import { CiTimer } from 'react-icons/ci';
 import { AiFillStar } from 'react-icons/ai';
 import { url } from '../Shared/Shared';
 import { Link } from 'react-router-dom';
-
+import './PlanTour.css'
 const PlanTour = () => {
   const [tourDetails, setTourDetails] = useState([]);
  
@@ -35,8 +35,61 @@ const PlanTour = () => {
     };
     return date.toLocaleDateString('en-US', options);
   };
+//search
 
+const [searchTerm, setSearchTerm] = useState('');
+
+const handleSearch = () => {
+  // Perform search logic here
+  console.log('Searching for:', searchTerm);
+};
+//search
   return (
+
+    <div>
+ <div className="flex  bg-green-600 text-white font-bold shadow-xl p-2">
+  <h1 className='mx-4 text-2xl'>Nature Adventure Club</h1>
+      <input
+        type="text"
+        className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button
+        className="bg-blue-500 text-white rounded-r px-4 py-2 ml-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        onClick={handleSearch}
+      >
+        Search
+      </button>
+    </div>
+<section className='flex overflow-x-auto'>
+  {tourDetails.map((card, index) => (
+    <div className={`k card-container ${index % 2 === 0 ? 'bend-left' : ''}`}>
+      <div className=" w-96 h-96 relative border-4 border-black bg-green-200  background-image w-96 bg-base-100 shadow-xl image-full transform -skew-x-12">
+        <figure>
+          <img  />
+        </figure>
+        <div className="">
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+          <div className="text-white p-4 font-bold">
+            <h1 className='bg-blue-600 p-1 rounded px-8'>rs. {card.price}</h1>
+            <h1 className='my-4 uppercase text-xl '>{card.placeName}</h1>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
+
+   <div className='my-4'>
+   <h1 className='text-xl font-semibold'>Upcomming Tours</h1>
+   <p className='text-gray-400 '>Take A look at our upcomming public tourse</p>
+   </div>
+
+
+      {/*  */}
     <section className='lg:grid lg:grid-cols-3 gap-2 sm:grid sm:grid-cols-2'>
       {tourDetails.map((t) => (
         <div className='m-4' key={t.id}>
@@ -73,6 +126,7 @@ const PlanTour = () => {
         </div>
       ))}
     </section>
+    </div>
   );
 };
 

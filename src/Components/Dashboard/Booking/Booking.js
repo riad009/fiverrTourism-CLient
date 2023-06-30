@@ -34,7 +34,7 @@ const Booking = () => {
   return (
     <div>
     
-      {booking.map((bookingData) => (
+      {booking?.map((bookingData) => (
         <div key={bookingData._id} className='m-4'>
           <div className='flex flex-col lg:flex-row text-left m-2'>
             <div className='lg:w-1/2'>
