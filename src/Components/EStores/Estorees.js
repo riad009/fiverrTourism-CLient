@@ -63,7 +63,19 @@ const Estorees = () => {
   }, [selectedCategory])
 
 
- 
+  //get list 
+  const [categories, setCategories] = useState();
+   
+  console.log('categories',categories)
+  useEffect(()=>{
+      fetch(`${url}/get/categoryName`)
+      .then(res=>res.json())
+      .then(data=>setCategories(data))
+      
+      
+          },
+          [categories])
+  
  
 
   return (
@@ -99,8 +111,10 @@ const Estorees = () => {
           <ul className='space-y-2'>
            
             <section className=''>
-              <ul className='space-y-3'>
-                <li>
+          
+         
+              <ul className='space-y-3 overflow-x-auto h-72'>
+              <li>
                 <label className=' btn btn-outline btn-xs bg-green-600  text-white'>
                 <input
                   type="radio"
@@ -113,63 +127,24 @@ const Estorees = () => {
                 All
               </label>
                 </li>
-               {/*  */}
-                <li>
-                <label className=' btn btn-outline btn-xs bg-green-600  text-white'>
-                <input
-                  type="radio"
-                  value="bag"
-                  checked={selectedCategory === 'bag'}
+                {/*  */}
+              {
+  categories?.map((c) => (
+    <li key={c.category}>
+      <label className='btn btn-outline btn-xs bg-green-600 text-white'>
+        <input
+          type="radio"
+          value={c.category}
+          checked={selectedCategory === c.category}
+          onClick={(e) => setSelectedCategory(e.target.value)}
+        />
+        {c.category}
+      </label>
+    </li>
+  ))
+}
 
-                  onClick={(e) => setSelectedCategory(e.target.value)}
-                />
-                 {' '}
-                Bag
-              </label>
-                </li>
-               {/*  */}
-                <li>
-                <label className=' btn btn-outline btn-xs bg-green-600  text-white'>
-                <input
-                  type="radio"
-                  value="clothes"
-                  checked={selectedCategory === 'clothes'}
-
-                  onClick={(e) => setSelectedCategory(e.target.value)}
-                />
-                 {' '}
-                 Clothes
-              </label>
-                </li>
-               {/*  */}
-                <li>
-                <label className=' btn btn-outline btn-xs bg-green-600  text-white'>
-                <input
-                  type="radio"
-                  value="decoration"
-                  checked={selectedCategory === 'decoration'}
-
-                  onClick={(e) => setSelectedCategory(e.target.value)}
-                />
-                 {' '}
-                 Decoration
-              </label>
-                </li>
-               {/*  */}
-                <li>
-                <label className=' btn btn-outline btn-xs bg-green-600  text-white'>
-                <input
-                  type="radio"
-                  value="accessories"
-                  checked={selectedCategory === 'accessories'}
-
-                  onClick={(e) => setSelectedCategory(e.target.value)}
-                />
-                 {' '}
-                 Accessories
-              </label>
-                </li>
-               {/*  */}
+               
               </ul>
             
               {/*  */}

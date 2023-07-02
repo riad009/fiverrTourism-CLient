@@ -2,7 +2,25 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Auth/AuthProvider';
 import { url } from '../Shared/Shared';
+import { toast } from 'react-toastify';
 const YourComponent = () => {
+
+
+  const [category, setSelectedCity] = useState('');
+
+  const handleCityChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedCity(selectedValue);
+  
+    // Update formData with selectedCity
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      category: selectedValue,
+    }));
+  
+    // You can perform further actions with the selected value here
+  };
+  
 
   //pixk color
   const [selectedColors, setSelectedColors] = useState([]);
@@ -53,12 +71,13 @@ const YourComponent = () => {
 
  //get shopkeeper details
   const [formData, setFormData] = useState({
+    selectedCity :category ,
     ownerEmail:email,
-    name: 'Macbok pro',
-    Shops: 'Daraj',
-    price: 12000,
+    name: '',
+    Shops: '',
+    price: 200,
     description: 'The MacBook Pro is a premium line of laptops designed and manufactured by Apple Inc. It is highly regarded for its exceptional performance, sleek design, and advanced features. With its slim and elegant aluminum construction, the MacBook Pro exudes a premium and modern aesthetic. Featuring a high-resolution Retina display, the MacBook Pro delivers stunning visuals with vibrant colors and sharp details. The display provides an immersive viewing experience, making it ideal for creative professionals, content creators, and multimedia enthusiasts.   Powerful performance lies at the core of the MacBook Pro. Equipped with either Intel or Apples M1 processors, depending on the model, it offers fast and efficient processing power to handle demanding tasks such as video editing, graphic design, and software development. Ample RAM and storage options are available to accommodate various needs  Graphics capabilities are enhanced with dedicated graphics processors, enabling smooth rendering of graphics-intensive applications such as video editing  3D modeling, and gaming. This ensures a seamless and immersive user experience when working with visually demanding content  The MacBook Pro features a Touch Bar, a contextual OLED touchscreen strip located above the keyboard. It dynamically adapts to different applications, providing context-sensitive controls and shortcuts for improved productivity. Additionally, the Touch ID fingerprint sensor, integrated into the power button, offers secure and convenient authentication, as well as compatibility with Apple Pay   A comfortable and responsive keyboard, paired with a large Force Touch trackpad, provides precise input and supports various multi-touch gestures. This allows for a smooth and intuitive user experience, whether you are typing, navigating, or interacting with content',
-    category: '',
+   
     featured: true,
     stock: 5,
     count : 1,
@@ -76,6 +95,7 @@ const YourComponent = () => {
       }
     ]
   });
+  console.log('formData',formData)
   console.log('selectedColors',selectedColors)
   const handleChange = (e) => {
     if (e.target.name.includes('image')) {
@@ -93,12 +113,12 @@ const YourComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+   
     // const updatedFormData = { ...formData, people: people.people };
   
     axios.post(`${url}/estore/post`, formData)
       .then((response) => {
-        // Handle the response
+        toast.success('Product submitted')
       })
       .catch((error) => {
         console.error(error);
@@ -106,14 +126,97 @@ const YourComponent = () => {
   };
   
 
- 
+ //create category
+ const [categorystate, setcategoryName] = useState('all');
+ const [cateryImg, setcategoryImg] = useState('https://www.careeraddict.com/uploads/article/60419/entrepreneurship-product-ideas.png');
+
+const handlecreate = async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    category:categorystate,
+    cateryImg:cateryImg,
+  
+  };
+
+
+  try {
+    console.log('formData',)
+    const response = await fetch(`${url}/post/create/category`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      toast.success('New Category created')
+    } else {
+      // handle the error, e.g., show an error message
+    }
+  } catch (error) {
+    // handle the error, e.g., show an error message
+  }
+};
+
+//catagories get
+const [categories, setCategories] = useState();
+   
+console.log('categories',categories)
+useEffect(()=>{
+    fetch(`${url}/get/categoryName`)
+    .then(res=>res.json())
+    .then(data=>setCategories(data))
+    
+    
+        },
+        [categories])
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto ">
+   <div className="container mx-auto py-4">
+      <form onSubmit={handlecreate} className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md">
+        <h2 className="text-2xl font-bold mb-6">Create  a new Category for Product <p className=' text-red-400'></p> </h2>
+
+        <div className="mb-6">
+          <label htmlFor="name" className="block text-lg font-medium text-gray-700">Category Name</label>
+          <p className=' text-gray-400'>Do not create a category with the same name twice</p>
+          <input
+            type="text"
+            id="name"
+            name="name"
+           
+            onChange={(e) => setcategoryName(e.target.value)}
+            className="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Example: Clothes"
+          />
+          <input
+            type="text"
+            id="name"
+            name="name"
+           
+            onChange={(e) => setcategoryImg(e.target.value)}
+            className="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="img url"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md"
+        >
+          Create
+        </button>
+      </form>
+    </div>
+      
+      {/*  */}
           <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2 text-gray-700">Name</label>
-          <input type="text" id="name" name="name"  onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+          <input type="text" id="name" name="name" required  onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
         </div>
         <div className="mb-4">
           <label htmlFor="Shops" className="block mb-2 text-gray-700">Shops</label>
@@ -121,16 +224,27 @@ const YourComponent = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="price" className="block mb-2 text-gray-700">Price</label>
-          <input type="number" id="price" name="price" onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
+          <input type="number" id="price" name="price" required onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
         </div>
         <div className="mb-4">
           <label htmlFor="description" className="block mb-2 text-gray-700">Description</label>
           <textarea id="description" name="description"  onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
         </div>
-        <div className="mb-4">
+        <div>
+        <select   onChange={handleCityChange} name='category' className="select select-secondary w-full max-w-xs">
+  <option disabled selected>Pick your product category</option>
+  {[...new Set(categories?.filter(city => city.category).map(city => city.category))]
+    .sort((a, b) => a.localeCompare(b))
+    .map(city => (
+      <option key={city} value={city}>{city}</option>
+    ))
+  }
+</select>
+        </div>
+        {/* <div className="mb-4">
           <label htmlFor="category" className="block mb-2 text-gray-700">Category</label>
           <input type="text" id="category" name="category"  onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md" />
-        </div>
+        </div> */}
         <div className="mb-4">
   <label htmlFor="featured" className="block mb-2 text-gray-700">Featured</label>
   <input
@@ -198,8 +312,9 @@ const YourComponent = () => {
           ))}
         </div>
         <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md">Submit</button>
-      </form>
+          </form>
       {/*  */}
+ 
       
     </div>
   );

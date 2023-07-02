@@ -40,8 +40,24 @@ else {
             <li><Link to={'/plantour'}>Plan A Tour</Link> </li>
             <li><Link to={'/visitplaces'}>Visit Places</Link></li>
             <li><Link to={'/estores'}>E-Store</Link> </li>
-            <li><Link to={'/estores'}>E-Store</Link> </li>
+            <Link  to={'/contact'}>Contact</Link> 
+          <Link to={'/about'}>About Us</Link> 
             <li><Link to={'/dashboard'}>Dashboard</Link> </li>
+            {
+
+user?.email ?
+<> 
+    
+<Link className='mx-8' to={'/dashboard'}>Dashboard</Link>
+ <button onClick={handleLogout} className='btn btn-outline btn-success'>logout </button>
+ </>
+:
+<>
+
+<Link to={'/login'} className='btn btn-outline btn-success'>Login </Link>
+</>
+
+     }
            
                </ul> 
         
@@ -51,7 +67,7 @@ else {
         {/* navbar large devices */}
       <div className=" justify-between mr-6 hidden lg:flex ">
           
-          <Link className='mx-8' to={'/'}>Home</Link>
+       
           <Link className='mx-8' to={'/plantour'}>Plan A Tour</Link> 
           <Link className='mx-8' to={'/visitplaces'}>Visit Places</Link>
           <Link className='mx-8' to={'/estores'}>E-Store</Link> 

@@ -23,6 +23,24 @@ const RightSection = ({selectedCategory,search, rangeValue, getsearch }) => {
 
     fetchData();
   }, []);
+  // Fetch all data
+
+
+  //featured product
+  const [featured, setfeatured] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${url}/estore/get/featureItem`);
+        const data = await response.json();
+        setfeatured(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Filter data based on price
   useEffect(() => {
@@ -50,7 +68,7 @@ const RightSection = ({selectedCategory,search, rangeValue, getsearch }) => {
 {
       loading ?
       <> <div className='fixed inset-0 flex items-center justify-center'>
-      <div className='p-70 custom-spinner'></div>
+      <div className='custom-spinner'></div>
     </div>
     </>
       :
@@ -60,8 +78,30 @@ const RightSection = ({selectedCategory,search, rangeValue, getsearch }) => {
 
 {
   search === "" ? (
-    <CatagoriesProducts></CatagoriesProducts>
-    
+    <div>
+      <CatagoriesProducts></CatagoriesProducts>
+    <section className='bg-[#E1E2DB] p-8'>
+    <h1 className='flex items-center font-semibold my-4  text-xl justify-center'>Featured Products</h1>
+    <div className='grid grid-cols-5 gap-2'>
+      {featured.slice(0, 5).map((p) => (
+        <Link  to={`/estoreid/${p._id}`}
+          className='hover:shadow-xl overflow-x-auto mb-4 rounded-md '
+          key={p.id} // assuming there is an 'id' property for each product
+          // call handleChange with the selected option
+        >
+         <div className=" bg-base-100 shadow-xl p-4">
+         <img className='h-24' src={p.image[0].url} alt="Shoes" />
+  <div className="text-xs text-gray-400">
+    <h2 className="">{p.name}</h2>
+    <h2 className="">{p.price}</h2>
+   
+   
+  </div>
+</div>   </Link>
+      ))}
+    </div>
+  </section>
+    </div>
   ) :
   <>  </>
 }

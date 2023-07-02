@@ -13,6 +13,8 @@ import { MdSpaceDashboard } from 'react-icons/md';
  import { TbBrandBooking } from 'react-icons/tb';
  import { BiStore } from 'react-icons/bi';
  import { CgProfile } from 'react-icons/cg';
+ import { BsReverseListColumnsReverse } from 'react-icons/bs';
+ import { BsClockHistory } from 'react-icons/bs';
 import { AuthContext } from '../Auth/AuthProvider.js';
 const LayoutDashboard = () => {
 
@@ -98,21 +100,31 @@ else {
       </h1>)
     }
     
+ 
     <p className='text-xs text-gray-400 hover:text-blue-400 hover:underline'>edit</p></a></li></Link>
     <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
-    <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
-    <Link to={'/dashboard/postplantour'}><li><a><p className='text-indigo-400'><FiSend/></p> Post PlanTour</a></li></Link>
-    <Link to={'/dashboard/shopkeepers'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Shopkeepers</a></li></Link>
-    <Link to={'/dashboard/postdata'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Places</a></li></Link>
-    <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p> Cart</a></li></Link>
+    <hr />
+
+    <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post E-store product</a></li></Link>
+    <Link to={'/dashboard/shopkeepers'}><li><a> <p className='text-indigo-400'><FiSend/></p>Shopkeepers </a></li></Link>
+    <Link to={'/dashboard/allproducts'}><li><a> <p className='text-indigo-400'><BiStore/></p> All E-store product</a></li></Link>
+    <Link to={'/dashboard/myproduct'}><li><a> <p className='text-indigo-400'><BiStore/></p> My E-store product</a></li></Link>
+
+    <hr />
     <Link to={'/dashboard/Myorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>My Order</a></li></Link>
-    <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>AllOrder</a></li></Link>
-    <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> Order History</a></li></Link>
-    <Link to={'/dashboard/allproducts'}><li><a> <p className='text-orange-400'><BiStore/></p> All E-store product</a></li></Link>
-    <Link to={'/dashboard/myproduct'}><li><a> <p className='text-orange-400'><BiStore/></p> My E-store product</a></li></Link>
+    <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><BsReverseListColumnsReverse/></p>All Order</a></li></Link>
+    <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-orange-400'><BsClockHistory/></p> Order History</a></li></Link>
+    <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p>My Cart</a></li></Link>
+    <hr />
+    <Link to={'/dashboard/postplantour'}><li><a><p className='text-indigo-400'><FiSend/></p> Post PlanTour</a></li></Link>
+
+    <Link to={'/dashboard/postdata'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Places</a></li></Link>
+
+<hr />
+
     <Link to={'/dashboard/mybooking'}><li><a> <p className='text-blue-400'><TbBrandBooking/></p> My Booking</a></li></Link>
-    <Link to={'/dashboard/listbooking'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> All Booking list</a></li></Link>
-    <Link to={'/dashboard/alltourlist'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> AllTour list</a></li></Link>
+    <Link to={'/dashboard/listbooking'}><li><a> <p className='text-blue-400'><BsReverseListColumnsReverse/></p> All Booking list</a></li></Link>
+    <Link to={'/dashboard/alltourlist'}><li><a> <p className='text-blue-400'><BsReverseListColumnsReverse/></p> AllTour list</a></li></Link>
 
    
  
@@ -120,9 +132,30 @@ else {
       </p>
     ) : p.accountType === "tgmanager" ? (
       <p>
+        
       <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Tour Guid Manager</a></li>
-  {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
-  <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
+      <Link to={'/dashboard/edituserprofile'}><li><a>  
+    {
+      people.map(name=> <h1 className=' gap-2 flex items-center'>
+       
+       {
+        name.profileUrl ?
+        <>
+          <img className='w-6 h-6 rounded' src= {name.profileUrl} alt="" />
+        </>
+        :
+        <><CgProfile/></>
+       } 
+     
+        {name.name}
+      </h1>)
+    }
+    
+ 
+    <p className='text-xs text-gray-400 hover:text-blue-400 hover:underline'>edit</p></a></li></Link>
+    <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
+    <hr />
+ 
   <Link to={'/dashboard/postplantour'}><li><a><p className='text-indigo-400'><FiSend/></p> Post PlanTour</a></li></Link>
   <Link to={'/dashboard/postdata'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Places</a></li></Link>
   <Link to={'/dashboard/mybooking'}><li><a> <p className='text-blue-400'><TbBrandBooking/></p> My Booking</a></li></Link>
@@ -138,8 +171,29 @@ else {
     ) : p.accountType === "smanager" ? (
       <p>
       <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Shop Manager</a></li>
-  {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
-  <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
+ 
+      <Link to={'/dashboard/edituserprofile'}><li><a>  
+    {
+      people.map(name=> <h1 className=' gap-2 flex items-center'>
+       
+       {
+        name.profileUrl ?
+        <>
+          <img className='w-6 h-6 rounded' src= {name.profileUrl} alt="" />
+        </>
+        :
+        <><CgProfile/></>
+       } 
+     
+        {name.name}
+      </h1>)
+    }
+    
+ 
+    <p className='text-xs text-gray-400 hover:text-blue-400 hover:underline'>edit</p></a></li></Link>
+    <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
+    <hr />
+
   <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
   <Link to={'/dashboard/shopkeepers'}><li><a> <p className='text-indigo-400'><FiSend/></p>Update Profile</a></li></Link>
   <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p> Cart</a></li></Link>
@@ -156,8 +210,28 @@ else {
     ) : p.accountType === "shopkeeper" ? (
       <p>
       <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Shopkeeper</a></li>
-  {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
-  <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
+      <Link to={'/dashboard/edituserprofile'}><li><a>  
+    {
+      people.map(name=> <h1 className=' gap-2 flex items-center'>
+       
+       {
+        name.profileUrl ?
+        <>
+          <img className='w-6 h-6 rounded' src= {name.profileUrl} alt="" />
+        </>
+        :
+        <><CgProfile/></>
+       } 
+     
+        {name.name}
+      </h1>)
+    }
+    
+ 
+    <p className='text-xs text-gray-400 hover:text-blue-400 hover:underline'>edit</p></a></li></Link>
+   
+    <hr />
+
   <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
   <Link to={'/dashboard/shopkeepers'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Shopkeepers</a></li></Link>
 
@@ -174,7 +248,27 @@ else {
     ) : p.accountType === "tplanner" ? (
       <p>
       <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Tourist Planner</a></li>
-  {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
+      <Link to={'/dashboard/edituserprofile'}><li><a>  
+    {
+      people.map(name=> <h1 className=' gap-2 flex items-center'>
+       
+       {
+        name.profileUrl ?
+        <>
+          <img className='w-6 h-6 rounded' src= {name.profileUrl} alt="" />
+        </>
+        :
+        <><CgProfile/></>
+       } 
+     
+        {name.name}
+      </h1>)
+    }
+    
+ 
+    <p className='text-xs text-gray-400 hover:text-blue-400 hover:underline'>edit</p></a></li></Link>
+   
+    <hr />
   {/* <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
   <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
   <Link to={'/dashboard/shopkeepers'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Shopkeepers</a></li></Link> */}
@@ -197,7 +291,27 @@ else {
     ) : p.accountType === "user" ? (
       <p>
       <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Tourist</a></li>
-  {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
+      <Link to={'/dashboard/edituserprofile'}><li><a>  
+    {
+      people.map(name=> <h1 className=' gap-2 flex items-center'>
+       
+       {
+        name.profileUrl ?
+        <>
+          <img className='w-6 h-6 rounded' src= {name.profileUrl} alt="" />
+        </>
+        :
+        <><CgProfile/></>
+       } 
+     
+        {name.name}
+      </h1>)
+    }
+    
+ 
+    <p className='text-xs text-gray-400 hover:text-blue-400 hover:underline'>edit</p></a></li></Link>
+   
+    <hr />
   {/* <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link> */}
   {/* <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
   <Link to={'/dashboard/postplantour'}><li><a><p className='text-indigo-400'><FiSend/></p> Post PlanTour</a></li></Link>

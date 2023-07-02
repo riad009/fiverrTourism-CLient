@@ -38,6 +38,7 @@ import UpdateProduct from './Components/Dashboard/Admin/Order/UpdateProduct';
 import AllTour from './Components/Dashboard/Booking/AllTour';
 import UpdatePlanTour from './Components/Dashboard/Booking/UpdatePlanTour';
 import EditUserProfile from './Components/Dashboard/User/EditUserProfile';
+import IdDetail from './Components/EStores/CatagoriesProducts/IdDetail';
 
 
 
@@ -62,7 +63,7 @@ function App() {
 
           {
             path: '/',
-            element:  <VisitPlaces></VisitPlaces>
+            element: <Estorees></Estorees>
           },
         
 
@@ -239,6 +240,11 @@ function App() {
                 loader:({params})=>fetch(`${url}/update/get/tour/id/${params.id}`)
               },
               {
+                path: '/dashboard/categoryId/:id',
+                element: <IdDetail></IdDetail>,
+                loader:({params})=>fetch(`${url}/categoryId/${params.id}`)
+              },
+              {
                 path: '/dashboard/edituserprofile',
                 element:  <EditUserProfile></EditUserProfile>
               },
@@ -263,6 +269,7 @@ function App() {
      <RouterProvider router={router}></RouterProvider>
 
      <ToastContainer/>
+    
      
     </div>
   );

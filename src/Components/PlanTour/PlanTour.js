@@ -37,32 +37,84 @@ const PlanTour = () => {
   };
 //search
 
-const [searchTerm, setSearchTerm] = useState('');
+const [search, setsearch] = useState(""); //take user input
+ 
 
-const handleSearch = () => {
-  // Perform search logic here
-  console.log('Searching for:', searchTerm);
+const [getitem, setGetSearchByItem] = useState(''); //get from db
+
+
+useEffect(() => {
+
+
+  let urlAdress = `${url}/tour/search/${search}`;
+
+
+  fetch(urlAdress)
+
+    .then(res => res.json())
+    .then(data => {
+      setGetSearchByItem(data)
+
+
+
+    })
+
+}, [search])
+
+
+console.log('searchTerm'.searchTerm)
+const handlesearch = (event) => {
+  setsearch(event.target.value);
 };
-//search
+
+console.log(' getitem.length', getitem.length)
+
   return (
 
     <div>
- <div className="flex  bg-green-600 text-white font-bold shadow-xl p-2">
-  <h1 className='mx-4 text-2xl'>Nature Adventure Club</h1>
-      <input
+ <div className="flex  bg-green-600 font-bold shadow-xl p-2">
+  <h1 className='mx-4 text-2xl  text-white'>Nature Adventure Club</h1>
+     
+  <input    onChange={handlesearch}  type="text"  placeholder="Search" className="input input-bordered input-info w-full max-w-xs" />
+      {/* <input
         type="text"
         className="border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button
+      /> */}
+      {/* <button
         className="bg-blue-500 text-white rounded-r px-4 py-2 ml-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
         onClick={handleSearch}
       >
         Search
-      </button>
+      </button> */}
     </div>
+
+    <div class="relative">
+  <div class="absolute top-0 left-1/4 shadow-xl  z-10">
+    {
+      search.length > 0 ?
+      <>  {
+        getitem.slice(0, 4).map(t => (
+          <div class="bg-white bg-opacity-80 p-2 shadow px-20 border-1 hover:bg-green-400 ">
+              <Link to={`/get/tour/id/${t._id}`} className=''>{t.placeName}</Link>
+         
+         
+         
+          </div>
+        ))
+      }</>
+      :
+      <></>
+
+    }
+  
+  </div>
+</div>
+
+
+
 <section className='flex overflow-x-auto'>
   {tourDetails.map((card, index) => (
     <div className={`k card-container ${index % 2 === 0 ? 'bend-left' : ''}`}>
