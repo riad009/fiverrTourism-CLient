@@ -9,7 +9,7 @@ const PostData = () => {
   const [timings, setTimings] = useState('');
   const [description, setDescription] = useState('');
   const [history, setHistory] = useState('');
-  const [additional, setAdditional] = useState('');
+  const [iframe, setIframe] = useState('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14162938.508285249!2d58.3731919608807!3d29.92913724027424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38db52d2f8fd751f%3A0x46b7a1f7e614925c!2sPakistan!5e0!3m2!1sen!2sbd!4v1688211594577!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,7 +22,7 @@ const PostData = () => {
       timings,
       description,
       history,
-      additional,
+      iframe,
     };
    
 
@@ -44,7 +44,7 @@ const PostData = () => {
     setTimings('');
     setDescription('');
     setHistory('');
-    setAdditional('');
+    setIframe('');
   };
 
   return (
@@ -134,12 +134,12 @@ const PostData = () => {
         </div>
         <div>
           <label htmlFor="history" className="block font-medium">
-            Extra field:
+           Google map Iframe Link (Embed map)
           </label>
           <input
             id="history"
-            value={additional}
-            onChange={(e) => setAdditional(e.target.value)}
+            placeholder='Example: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.4300070296!2d90.25481431203616!3d23.78054934702908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1688206929307!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+            onChange={(e) => setIframe(e.target.value)}
             className="my-2 input input-bordered input-success w-full max-w-xs"
           />
         </div>

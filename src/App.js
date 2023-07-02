@@ -33,6 +33,11 @@ import IdListBooking from './Components/Dashboard/Booking/IdListBooking';
 import Shopkeepers from './Components/Dashboard/Shopkeepers/Shopkeepers';
 import Allorder from './Components/Dashboard/Admin/Order/AllOrder';
 import OrderHistory from './Components/Dashboard/Admin/Order/OrderHistory';
+import AllProdcuts from './Components/Dashboard/Admin/Order/AllProducts';
+import UpdateProduct from './Components/Dashboard/Admin/Order/UpdateProduct';
+import AllTour from './Components/Dashboard/Booking/AllTour';
+import UpdatePlanTour from './Components/Dashboard/Booking/UpdatePlanTour';
+import EditUserProfile from './Components/Dashboard/User/EditUserProfile';
 
 
 
@@ -212,6 +217,30 @@ function App() {
               {
                 path: '/dashboard/orderhistory',
                 element: <OrderHistory></OrderHistory>
+              },
+            
+              {
+                path: '/dashboard/allproducts',
+                element:  <AllProdcuts></AllProdcuts>
+              },
+             
+              {
+                path: '/dashboard/alltourlist',
+                element:  <AllTour></AllTour>
+              },
+              {
+                path: '/dashboard/update/estore/product/:id',
+                element: <UpdateProduct></UpdateProduct>,
+                loader:({params})=>fetch(`${url}/estoreid/${params.id}`)
+              },
+              {
+                path: '/dashboard/update/get/tour/id/:id',
+                element: <UpdatePlanTour></UpdatePlanTour>,
+                loader:({params})=>fetch(`${url}/update/get/tour/id/${params.id}`)
+              },
+              {
+                path: '/dashboard/edituserprofile',
+                element:  <EditUserProfile></EditUserProfile>
               },
             
              

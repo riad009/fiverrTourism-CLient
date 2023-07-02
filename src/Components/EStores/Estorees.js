@@ -76,10 +76,11 @@ const Estorees = () => {
       {/* left navbar large devices */}
       <section className='' >
         <div
-          className={`p-2   text-left ${isLeftSideOpen ? '' : 'hidden'}  `}
+          className={`p-2 sticky top-0   text-left ${isLeftSideOpen ? '' : 'hidden '}  `}
           style={{
             width: isLeftSideOpen ? '' : '0',
             transition: 'width 0.3s ease',
+            
           }}
         >
           <input
@@ -89,6 +90,10 @@ const Estorees = () => {
             className="lg:pr-48  my-2 input input-bordered input-success "
             style={{ width: isLeftSideOpen ? '100%' : '0' }}
           />
+     
+          {
+            console.log('search',search)
+          }
           <h1 className='text-xl font-semibold my-4'>Category</h1>
 
           <ul className='space-y-2'>
@@ -173,7 +178,7 @@ const Estorees = () => {
             </section>
           </ul>
 
-          <h1 className='my-4 text-xl font-semibold'>Shops</h1>
+          {/* <h1 className='my-4 text-xl font-semibold'>Shops</h1>
           <select
             className={`mb-4 mt-2 select select-success w-full max-w-xs ${isLeftSideOpen ? '' : 'opacity-0 pointer-events-none'
               }`}
@@ -187,7 +192,7 @@ const Estorees = () => {
             <option>Bleach</option>
             <option>Fullmetal Alchemist</option>
             <option>Jojo's Bizarre Adventure</option>
-          </select>
+          </select> */}
 
           <h1 className='text-xl font-semibold my-4'>Price</h1>
           <p className='my-2'>Rs: <span>{rangeValue}</span></p>

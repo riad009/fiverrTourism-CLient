@@ -56,12 +56,12 @@ const Order = () => {
        <table class="table table-xs table-pin-rows table-pin-cols w-full">
   <thead>
     <tr>
-      <th class="w-1/6">User</th>
+      <th class="w-1/6">User sss</th>
       <th class="w-1/6">Buying Date </th>
       <th class="w-1/6">Price</th>
       <th class="w-1/6">item</th>
       <th class="w-1/6">Status</th>
-      <th class="w-1/7">Action</th>
+      
       
     </tr>
   </thead>
@@ -75,17 +75,7 @@ const Order = () => {
       <td class="w-2/8">   <Link to={`/dashboard/get/idWise/order/${p._id}`} > <button className="btn btn-info btn-outline btn-sm ">Details</button></Link>
        </td>
       <td class="w-3/8"> {p.orderStatus} </td>
-      {
-        people.map(p=> <div>
-          {
-        p.accountType =="admin" ||  p.accountType =="shopkeeper"?
-        <><td><button onClick={() => handleStatus(p)} className=" btn-sm btn btn-outline btn-success">Make it complete</button></td>
-        </>
-        :
-        <></>
-      }
-        </div>)
-      }
+      
         </tr>)
       }
 

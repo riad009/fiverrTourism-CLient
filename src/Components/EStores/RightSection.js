@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { url } from '../Shared/Shared';
 import ShowProduct from './ShowProduct';
+import CatagoriesProducts from './CatagoriesProducts/CatagoriesProducts';
 
 const RightSection = ({selectedCategory,search, rangeValue, getsearch }) => {
   const [product, setProduct] = useState([]);
@@ -44,11 +45,35 @@ const RightSection = ({selectedCategory,search, rangeValue, getsearch }) => {
 
   return (
     <section>
+  
+<div className=''>
+{
+      loading ?
+      <> <div className='fixed inset-0 flex items-center justify-center'>
+      <div className='p-70 custom-spinner'></div>
+    </div>
+    </>
+      :
+      <></>
+    }
+</div>
+
+{
+  search === "" ? (
+    <CatagoriesProducts></CatagoriesProducts>
+    
+  ) :
+  <>  </>
+}
+
+
+      {/*  */}
       <div className='lg:grid lg:grid-cols-3 sm:grid sm:grid-cols-2 gap-3 md:grid md:grid-cols-3'>
        
       {
   search !== "" ? (
     <>
+    
       {getsearch.length > 0 &&
         getsearch.map((p) => (
           <section key={p._id} className='hover:shadow-xl border-2'>
@@ -58,6 +83,7 @@ const RightSection = ({selectedCategory,search, rangeValue, getsearch }) => {
     </>
   ) : (
     <>
+  
       {filterProduct.map((p) => (
         <section key={p._id} className='hover:shadow-xl border-2'>
           <ShowProduct p={p} />

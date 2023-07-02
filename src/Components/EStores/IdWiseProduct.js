@@ -13,9 +13,33 @@ const IdWiseProduct = () => {
   const {user}=useContext(AuthContext)
   const email = user?.email;
   const p = useLoaderData();
+  
+
+  //selct color
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  // Function to handle color selection
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+  //selct color
   const images = p.image.slice(0, 5); // Assuming p.image is an array of image objects
 
   const [selectedImage, setSelectedImage] = useState(images[0]);
+
+
+  // sleect quantity
+  const [count, setCount] = useState(1);
+
+  const decreaseCount = () => {
+    setCount(count - 1);
+  };
+
+  const increaseCount = () => {
+    setCount(count + 1);
+  };
+
+  //select color
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -31,9 +55,12 @@ const IdWiseProduct = () => {
     alert('Please Login')
     navigate('/login')
   }
+
   const data = {
    email: email,
    card: p,
+   count: count,
+   selectedColors:selectedColor ,
   };
  
 
@@ -53,14 +80,20 @@ const IdWiseProduct = () => {
 
 const filteredComments = comments.filter(comment => comment.productID === p._id);
 console.log('filteredComments',filteredComments); // Number of matching comments found
-const [averageStars, setAverageStars] = useState(0);
+const [averageStars, setAverageStars] = useState(5);
 
 useEffect(() => {
   const calculateAverageStars = () => {
     const filterStars = comments.filter(comment => comment.productID === p._id);
 
     if (filterStars.length > 0) {
-      const sumOfStars = filterStars.reduce((accumulator, comment) => accumulator + comment.stars, 0);
+      const sumOfStars = filterStars.reduce((accumulator, comment) => {
+        if (comment?.stars) {
+          return accumulator + comment.stars;
+        }
+        return accumulator;
+      }, 0);
+
       const averageStars = sumOfStars / filterStars.length;
       setAverageStars(averageStars.toFixed(1));
     } else {
@@ -69,7 +102,8 @@ useEffect(() => {
   };
 
   calculateAverageStars();
-}, [comments, p]);
+}, [filteredComments]);
+
 // Number of matching comments found
 
  
@@ -86,6 +120,33 @@ useEffect(() => {
    fetchComments();
  }, [comments]);
 
+
+ //delete comments 
+ const handleDelete = async (c) => {
+    console.log('product id', c);
+  try {
+    console.log('product id', c);
+    const response = await axios.delete(`${url}/delete/comment/${c}`);
+    console.log('Deletion result:', response.data);
+  
+   toast.error('Comment deleted')
+   
+  } catch (error) {
+    console.error('Error deleting product:', error);
+  }
+};
+
+//find users
+
+const [people, setPeople] = useState([]);
+
+
+//find user
+useEffect(() => {
+  fetch(`${url}/get/findUser/byEmail?email=${user?.email}`)
+    .then((res) => res.json())
+    .then((data) => setPeople(data));
+}, [people]);
   return (
     <section className='m-12 flex gap-8'>
       <div className="flex w-1/3">
@@ -138,9 +199,34 @@ useEffect(() => {
 
    <h1 className='my-3'>Shop Name: {p.shopName} </h1>
 
-
+    <section className='my-4 font-bold text-xl'>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <button onClick={decreaseCount}>-</button>
+      <h2 className='' style={{ margin: '0 10px' }}>{count}</h2>
      
-
+      <button onClick={increaseCount}>+</button>
+    </div>
+    </section>
+   {/*ssssssssssssssssssssssss  */}
+  
+   <div className='mt-3 flex items-center'>
+    <h1>Color:</h1>
+      {p.selectedColors?.map((color, index) => (
+          <div  key={index}>
+           <p 
+           className={`w-4 rounded p-2 cursor-pointer gap-1 mx-1 my-4 ${selectedColor === color ? 'selected' : ''}`}
+           onClick={() => handleColorSelect(color)}
+             
+            style={{ backgroundColor: color.code }}
+          >
+          
+          </p>
+        </div>
+      ))}
+       </div>
+   {/*  */}
+   <p  className='mb-6 '>Selected Color: {selectedColor ? selectedColor.name : 'None'}</p>
+ 
      <div className=''>
       <button onClick={handleAddToCard} className='btn btn-success text-white'>Add to cart</button>
      </div>
@@ -151,7 +237,20 @@ useEffect(() => {
         filteredComments.map(c=><div className='my-3'>
         <div className="card w-96 bg-base-100 shadow-xl ">
   <div className="card-body">
-    <h2 className="card-title flex items-center"> <FaUserCircle/> <p className='text-md'>Riad Ahmed</p></h2>
+    <h2 className="space-x-2  text-xl flex items-center"> <FaUserCircle/> <p className='text-md'>{c.email}</p>
+   
+   {
+    people.map(p=><div>
+        {
+          p.accountType =="admin" ||   p.accountType =="smanager" ||  p.accountType =="shopkepper"  ?
+          <><button onClick={() => handleDelete(c._id)} className='btn-xs btn-error btn btn-outline'>Delete</button>
+          </>
+          :
+          <></>
+        }
+    </div>)
+   }
+      </h2>
     <p className='overflow-x-auto  p-1 '>{c.reviews} </p>
     
     <div className="card-actions justify-end ">

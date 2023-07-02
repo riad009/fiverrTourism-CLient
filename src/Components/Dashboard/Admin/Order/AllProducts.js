@@ -3,17 +3,16 @@ import { AuthContext } from '../../../Auth/AuthProvider';
 import { url } from '../../../Shared/Shared';
 import { ToastContainer } from 'react-toastify';
 import { MdDelete } from 'react-icons/md';
-import axios from 'axios';
-
 import { AiFillEdit } from 'react-icons/ai';
 import { CgMoreR } from 'react-icons/cg';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-const MyProduct = () => {
+const AllProducts = () => {
   const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`${url}/email/findmyproduct?email=${user?.email}`)
+    fetch(`${url}/estore/getall`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [products]);
@@ -32,11 +31,10 @@ const MyProduct = () => {
       console.error('Error deleting product:', error);
     }
   };
- //
  
   return (
     <div>
-    <h2 className='p-4 shadow-xl text-xl font-semibold bg-gray-200'>My E-store Products</h2>
+    <h2 className='p-4 shadow-xl text-xl font-semibold bg-gray-200'>All E-store Products</h2>
     <div className='text-left'>
       <div className="overflow-x-auto">
         <table class="table table-xs table-pin-rows table-pin-cols w-full">
@@ -73,4 +71,4 @@ const MyProduct = () => {
   );
 };
 
-export default MyProduct;
+export default AllProducts;

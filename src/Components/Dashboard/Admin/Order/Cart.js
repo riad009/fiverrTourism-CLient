@@ -3,6 +3,7 @@ import { url } from '../../../Shared/Shared';
 import { AuthContext } from '../../../Auth/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import { MdDelete } from 'react-icons/md';
+import { GiPriceTag } from 'react-icons/gi';
 import axios from 'axios';
 const Cart = () => {
   const { user } = useContext(AuthContext);
@@ -72,10 +73,11 @@ console.log('cart',order)
        <table class="table table-xs table-pin-rows table-pin-cols w-full">
   <thead>
     <tr>
+      <th class="w-2/6"></th>
       <th class="w-2/6">Item</th>
       <th class="w-1/6">Price</th>
       <th class="w-1/6">Quantity</th>
-      <th class="w-1/6">Subtotal</th>
+      
       <th class="w-1/6">Remove</th>
     </tr>
   </thead>
@@ -88,8 +90,9 @@ console.log('cart',order)
        </td>
       <td class="w-2/6">{p.card.name}</td>
       <td class="w-1/6">{p.card.price}</td>
-      <td class="w-1/6">Littel, Schaden and Vandervortsssssssss</td>
-      <td class="w-1/6">Canada</td>
+      <td class="w-1/6">{p.count}</td>
+     
+     
       <td class="w-1/6">  <button onClick={() => handleDelete(p)} className="mr-2 mb-2 btn-sm btn btn-outline btn-error"> <MdDelete/></button></td>
         </tr>)
       }
@@ -99,8 +102,11 @@ console.log('cart',order)
     
   </tbody>
        </table>
-    
-        </div> {totalPrice}
+        
+        </div> 
+        <div className='flex items-center m-4 font-semibold text-xl  alert w-1/4'>
+          Total Price:  <GiPriceTag/> {totalPrice}
+        </div>
         <button onClick={handleButtonClick} className='btn btn-success m-4 my-6 text-white bg-green-600  rounded font-semibold' >Confirm order</button>
         <ToastContainer />
       </div>

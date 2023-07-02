@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { MdSpaceDashboard } from 'react-icons/md';
-import { Navbar } from 'flowbite-react';
+
  import {url} from '../Shared/Shared.js'
  import { BiBlock } from 'react-icons/bi';
  import { FcApproval } from 'react-icons/fc';
@@ -33,7 +33,7 @@ const LayoutDashboard = () => {
   useEffect(() => {
     fetch(`${url}/get/findUser/byEmail?email=${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setName(data[0].name));
+      .then((data) => setName(data));
   }, [name]);
 
   //logout
@@ -79,8 +79,26 @@ else {
     {p.accountType === "admin" ? (
       <p>
         <li><a className='text-xl shadow-xl my-2 font-bold text-black'> <FcApproval/> Admin </a></li>
-    {/* <Link to={'/dashboard'}><li><a>Dashboard</a></li></Link> */}
-    <li><a>  <p className=''><CgProfile/></p><p className='uppercase '>{name}</p></a></li>
+  
+   
+    <Link to={'/dashboard/edituserprofile'}><li><a>  
+    {
+      people.map(name=> <h1 className=' gap-2 flex items-center'>
+       
+       {
+        name.profileUrl ?
+        <>
+          <img className='w-6 h-6 rounded' src= {name.profileUrl} alt="" />
+        </>
+        :
+        <><CgProfile/></>
+       } 
+     
+        {name.name}
+      </h1>)
+    }
+    
+    <p className='text-xs text-gray-400 hover:text-blue-400 hover:underline'>edit</p></a></li></Link>
     <Link to={'/dashboard/userlist'}><li><a>  <p className='text-sky-400'><FiUsers/></p>User List</a></li></Link>
     <Link to={'/dashboard/postestore'}><li><a> <p className='text-indigo-400'><FiSend/></p> Post Estore</a></li></Link>
     <Link to={'/dashboard/postplantour'}><li><a><p className='text-indigo-400'><FiSend/></p> Post PlanTour</a></li></Link>
@@ -90,9 +108,11 @@ else {
     <Link to={'/dashboard/Myorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>My Order</a></li></Link>
     <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>AllOrder</a></li></Link>
     <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> Order History</a></li></Link>
-    <Link to={'/dashboard/myproduct'}><li><a> <p className='text-orange-400'><BiStore/></p> My Estore product</a></li></Link>
+    <Link to={'/dashboard/allproducts'}><li><a> <p className='text-orange-400'><BiStore/></p> All E-store product</a></li></Link>
+    <Link to={'/dashboard/myproduct'}><li><a> <p className='text-orange-400'><BiStore/></p> My E-store product</a></li></Link>
     <Link to={'/dashboard/mybooking'}><li><a> <p className='text-blue-400'><TbBrandBooking/></p> My Booking</a></li></Link>
     <Link to={'/dashboard/listbooking'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> All Booking list</a></li></Link>
+    <Link to={'/dashboard/alltourlist'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> AllTour list</a></li></Link>
 
    
  

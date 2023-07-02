@@ -1,11 +1,13 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import GoogleMap from './GoogleMap';
 
 const Details = ({show}) => {
    
     const city = useLoaderData()
     return (
-        <div className='flex m-8'>
+       <section>
+         <div className='flex m-8'>
             <div className='w-1/2 '>
                {
                 city.picture?
@@ -23,7 +25,10 @@ const Details = ({show}) => {
                <h2 className='font-semibold'>Timing: <span className='font-normal'>{city.timings}</span></h2>
              
             </div>
+           
         </div>
+        <GoogleMap city={city}></GoogleMap>
+       </section>
     );
 };
 

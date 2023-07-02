@@ -21,13 +21,13 @@ const IDorder = () => {
     setRating(parseInt(event.target.value));
   };
 
-  const handlePostComment = (productId) => {
+  const handlePostComment = (order) => {
     // Create an object with the comment, rating, and productID values
     const data = {
       email: user.email,
       reviews: reviews,
       stars: stars,
-      productID: productId,
+      productID: order.card._id,
     };
     console.log('data',data)
     // Perform the POST request
@@ -70,6 +70,18 @@ const IDorder = () => {
               </p>
               <p className='text-gray-600 mb-4'>
                 <span className='font-bold'>Product Name:</span> {order.card.name}
+              </p>
+              <p className='text-gray-600 mb-4'>
+                <span className='font-bold'>Quantity:</span> {order.count}
+              </p>
+              <p className='text-gray-600 mb-4 flex items-center gap-2'>
+              <span className='font-bold'>Color:</span>
+              
+              <p className={`p-2 rounded-lg `} style={{ backgroundColor: order.selectedColors.code }}>
+                  
+                  </p>
+           
+
               </p>
 
               <div className='flex flex-wrap -mx-2'>
@@ -134,7 +146,7 @@ const IDorder = () => {
             <br />
             <button
               className="my-2 text-white btn btn-success"
-              onClick={() => handlePostComment(order.card._id)}
+              onClick={() => handlePostComment(order)}
             >
               Post Comment
             </button>
