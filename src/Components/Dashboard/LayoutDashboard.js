@@ -113,7 +113,7 @@ else {
     <hr />
     <Link to={'/dashboard/Myorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>My Order</a></li></Link>
     <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><BsReverseListColumnsReverse/></p>All Order</a></li></Link>
-    <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-orange-400'><BsClockHistory/></p> Order History</a></li></Link>
+    {/* <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-orange-400'><BsClockHistory/></p> Order History</a></li></Link> */}
     <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p>My Cart</a></li></Link>
     <hr />
     <Link to={'/dashboard/postplantour'}><li><a><p className='text-indigo-400'><FiSend/></p> Post PlanTour</a></li></Link>
@@ -319,7 +319,7 @@ else {
   <Link to={'/dashboard/postdata'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Places</a></li></Link> */}
   <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p> Cart</a></li></Link>
   <Link to={'/dashboard/Myorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>My Order</a></li></Link>
-  {/* <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>AllOrder</a></li></Link> */}
+  {/* <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>Order History</a></li></Link> */}
   {/* <Link to={'/dashboard/myproduct'}><li><a> <p className='text-orange-400'><BiStore/></p> My Estore product</a></li></Link> */}
   <Link to={'/dashboard/mybooking'}><li><a> <p className='text-blue-400'><TbBrandBooking/></p> My Booking</a></li></Link>
   {/* <Link to={'/dashboard/listbooking'}><li><a> <p className='text-blue-400'><AiFillShopping/></p> All Booking list</a></li></Link> */}
@@ -389,7 +389,7 @@ user?.email ?
   <Link to={'/dashboard/postdata'}><li><a> <p className='text-indigo-400'><FiSend/></p>Post Places</a></li></Link> */}
   <Link to={'/dashboard/cart'}><li><a> <p className='text-orange-400'><AiOutlineShoppingCart/></p> Cart</a></li></Link>
   <Link to={'/dashboard/Myorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>My Order</a></li></Link>
-  <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>Order History</a></li></Link>
+  {/* <Link to={'/dashboard/orderhistory'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>Order History</a></li></Link> */}
   {/* <Link to={'/dashboard/allorder'}><li><a> <p className='text-orange-400'><AiFillShopping/></p>AllOrder</a></li></Link> */}
   {/* <Link to={'/dashboard/myproduct'}><li><a> <p className='text-orange-400'><BiStore/></p> My Estore product</a></li></Link> */}
   <Link to={'/dashboard/mybooking'}><li><a> <p className='text-blue-400'><TbBrandBooking/></p> My Booking</a></li></Link>

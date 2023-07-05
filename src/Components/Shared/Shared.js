@@ -5,7 +5,7 @@ import React from 'react';
 
 
 // this is current url address for the server- u can change it based on ur server url address
- const url ='http://localhost:5000'
+ const url ='https://server-riad009.vercel.app'
 const Shared = () => {
     
     return (

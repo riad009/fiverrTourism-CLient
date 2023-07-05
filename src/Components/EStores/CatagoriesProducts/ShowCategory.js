@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ShowCategory = ({p}) => {
-    console.log('ppppppppppp',p)
+   
     return (
         <Link  to={`/dashboard/categoryId/${p._id}`}>
                <div  className=" bg-base-100 border-2 border-gray-100 p-8  ">

@@ -55,23 +55,37 @@ const IdWiseProduct = () => {
     alert('Please Login')
     navigate('/login')
   }
-
+ console.log('ccccccccccccccc',p.stock)
+ if(p.stock >0){
   const data = {
-   email: email,
-   card: p,
-   count: count,
-   selectedColors:selectedColor ,
-  };
- 
-
-  try {
+    email: email,
+    card: p,
+    count: count,
+    selectedColors:selectedColor ,
+   };
+   try {
     const response = await axios.post(`${url}/order/card/post`, data);
-   console.log('data',data)
-  
+   
+
+   
+
+     // Order successful, now update product stock
+     const updatedStock = p.stock - count;
+   
+     // Make an API call to update the product stock
+     await axios.put(`${url}/update/stock/${p._id}`, { stock: updatedStock });
+
+   console.log('done created')
     toast.success('Add to cart done')
   } catch (error) {
     console.error(error);
   }
+ 
+ }
+ else{
+  alert('stock out')
+}
+ 
 };
 
 
@@ -79,7 +93,7 @@ const IdWiseProduct = () => {
  const [comments, setComments] = useState([]);
 
 const filteredComments = comments.filter(comment => comment.productID === p._id);
-console.log('filteredComments',filteredComments); // Number of matching comments found
+
 const [averageStars, setAverageStars] = useState(5);
 
 useEffect(() => {
@@ -123,12 +137,11 @@ useEffect(() => {
 
  //delete comments 
  const handleDelete = async (c) => {
-    console.log('product id', c);
+   
   try {
-    console.log('product id', c);
-    const response = await axios.delete(`${url}/delete/comment/${c}`);
-    console.log('Deletion result:', response.data);
   
+    const response = await axios.delete(`${url}/delete/comment/${c}`);
+ 
    toast.error('Comment deleted')
    
   } catch (error) {

@@ -6,6 +6,8 @@ import { MdDelete } from 'react-icons/md';
 import { GiPriceTag } from 'react-icons/gi';
 import axios from 'axios';
 const Cart = () => {
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
   const { user } = useContext(AuthContext);
   const [order, setOrder] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -19,7 +21,7 @@ console.log('cart',order)
   //calculate the total price
   useEffect(() => {
     const calculateTotalPrice = () => {
-      const sum = order.reduce((acc, p) => acc + p.card.price, 0);
+      const sum = order.reduce((acc, p) => acc + p.card.price*p.count, 0);
       setTotalPrice(sum);
     };
 
@@ -40,12 +42,14 @@ console.log('cart',order)
       order: order,
       totalPrice:totalPrice,
       orderStatus: 'pending',
+      phone:phone,
+      address:address,
     };
 
     try {
       const response = await axios.post(`${url}/order/post`, data);
       toast.success('Order confirmed');
-      alert('post done');
+     
     } catch (error) {
       console.error(error);
     }
@@ -107,7 +111,13 @@ console.log('cart',order)
         <div className='flex items-center m-4 font-semibold text-xl  alert w-1/4'>
           Total Price:  <GiPriceTag/> {totalPrice}
         </div>
+       <div className='ml-4 gap-2'>
+        
+       <input     onChange={(e) => setPhone(e.target.value)} type="text" placeholder="phone number" className="my-3 input input-bordered input-accent w-full max-w-xs" /> <br />
+        <input     onChange={(e) => setAddress(e.target.value)} type="text" placeholder="Address" className="input input-bordered input-accent w-full max-w-xs" /> <br />
+       </div>
         <button onClick={handleButtonClick} className='btn btn-success m-4 my-6 text-white bg-green-600  rounded font-semibold' >Confirm order</button>
+       
         <ToastContainer />
       </div>
     );

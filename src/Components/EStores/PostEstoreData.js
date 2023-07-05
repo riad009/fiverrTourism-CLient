@@ -85,13 +85,13 @@ const YourComponent = () => {
   
     image: [
       {
-        url: 'https://resource.logitech.com/w_1200,h_630,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/plp/ipad-keyboards/ipad-keyboard-twitter-image.png?v=1'
+        url: ''
       },
       {
-        url: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQDP3TH?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1665496583591'
+        url: ''
       },
       {
-        url: 'https://www.digitaltrends.com/wp-content/uploads/2020/11/ipad-air-4-space-grey-3-scaled.jpg?p=1'
+        url: ''
       }
     ]
   });

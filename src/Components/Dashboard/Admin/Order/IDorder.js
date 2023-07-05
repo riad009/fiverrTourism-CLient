@@ -77,7 +77,7 @@ const IDorder = () => {
               <p className='text-gray-600 mb-4 flex items-center gap-2'>
               <span className='font-bold'>Color:</span>
               
-              <p className={`p-2 rounded-lg `} style={{ backgroundColor: order.selectedColors.code }}>
+              <p className={`p-2 rounded-lg `} style={{ backgroundColor: order.selectedColors?.code }}>
                   
                   </p>
            

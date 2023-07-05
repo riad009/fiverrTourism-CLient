@@ -24,7 +24,7 @@ const PlanTour = () => {
     fetchTourDetails();
   }, []);
 
-  console.log('tourDetails', tourDetails);
+
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -40,8 +40,8 @@ const PlanTour = () => {
 const [search, setsearch] = useState(""); //take user input
  
 
-const [getitem, setGetSearchByItem] = useState(''); //get from db
-
+const [getitem, setGetSearchByItem] = useState([]); //get from db
+console.log('getitem getitem',getitem)
 
 useEffect(() => {
 
@@ -62,12 +62,12 @@ useEffect(() => {
 }, [search])
 
 
-console.log('searchTerm'.searchTerm)
+
 const handlesearch = (event) => {
   setsearch(event.target.value);
 };
 
-console.log(' getitem.length', getitem.length)
+
 
   return (
 
@@ -145,7 +145,7 @@ console.log(' getitem.length', getitem.length)
     <section className='lg:grid lg:grid-cols-3 gap-2 sm:grid sm:grid-cols-2'>
       {tourDetails.map((t) => (
         <div className='m-4' key={t.id}>
-          <div className='text-left card border-dotted border-2 border-gray-400 p-1 rounded-none'>
+          <div className='text-left overflow-x-auto card border-dotted border-2 border-gray-400 p-1 rounded-none'>
             <figure className='relative'>
               <img className='h-64 w-96' src={t.imageUrl} alt='car!' />
               <div className='absolute bottom-0 w-full h-1/5 bg-black bg-opacity-50   flex items-center'>
@@ -154,7 +154,7 @@ console.log(' getitem.length', getitem.length)
             </figure>
             <div className=''>
               <section>
-                <p className='bg-blue-500 p-0.7 mx-0.5 px-1 my-1 w-2/4 text-xs text-white uppercase'>{t.sortTrailer}</p>
+                <p className='bg-blue-500 p-0.7 mx-0.5 px-1 my-1 w-2/4 text-xs text-white uppercase'>{t.sortTrailer.slice(0,20)}</p>
               </section>
 
               <section className='flex justify-between '>

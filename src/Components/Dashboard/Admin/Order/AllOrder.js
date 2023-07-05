@@ -66,6 +66,8 @@ const Allorder = () => {
     <tr>
       <th class="w-1/6">User</th>
       <th class="w-1/6">Buying Date </th>
+      <th class="w-1/6">Address</th>
+      <th class="w-1/6">Phone</th>
       <th class="w-1/6">Price</th>
       <th class="w-1/6">item</th>
       <th class="w-1/6">Status</th>
@@ -79,6 +81,8 @@ const Allorder = () => {
         allorders?.map(p=> <tr>
       <td class="w-2/8"> {p.email} </td>      
       <td class="w-2/8"> {p.time} </td>      
+      <td class="w-2/8"> {p.address} </td>      
+      <td class="w-2/8">   {p.phone}</td>      
       <td class="w-2/8">{p.totalPrice}  </td>
       <td class="w-2/8">   <Link to={`/dashboard/get/idWise/order/${p._id}`} > <button className="btn btn-info btn-outline btn-sm ">Details</button></Link>
        </td>
