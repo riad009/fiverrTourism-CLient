@@ -68,6 +68,7 @@ user?.email ?
       <div className=" justify-between mr-6 hidden lg:flex ">
           
        
+          <Link className='mx-8' to={'/'}>Home</Link> 
           <Link className='mx-8' to={'/plantour'}>Plan A Tour</Link> 
           <Link className='mx-8' to={'/visitplaces'}>Visit Places</Link>
           <Link className='mx-8' to={'/estores'}>E-Store</Link> 

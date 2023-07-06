@@ -35,9 +35,17 @@ const IdWiseProduct = () => {
     setCount(count - 1);
   };
 
+  
+  // 
+
   const increaseCount = () => {
-    setCount(count + 1);
+    if (p.stock > count) {
+      setCount(count + 1);
+    } else {
+      alert('Out of stock');
+    }
   };
+  // 
 
   //select color
 
@@ -56,6 +64,13 @@ const IdWiseProduct = () => {
     navigate('/login')
   }
  console.log('ccccccccccccccc',p.stock)
+
+//
+
+
+
+//  
+
  if(p.stock >0){
   const data = {
     email: email,

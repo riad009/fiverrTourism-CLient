@@ -63,6 +63,11 @@ function App() {
 
           {
             path: '/',
+            element: <Home></Home>
+          },
+        
+          {
+            path: '/estores',
             element: <Estorees></Estorees>
           },
         
